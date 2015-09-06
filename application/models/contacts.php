@@ -15,4 +15,29 @@ class Contacts extends CI_Model{
 		}
 	}
 
+	function searchContact($search){
+		$query = $this->db->query('SELECT * FROM contacts WHERE first_name LIKE %$search%');
+		if($query->num_rows() > 0){
+			return $query->result();
+		}
+		else{
+			return NULL;
+		}
+	}
+
+	function addContacts(){
+
+		$new_contact_data = array(
+			'first_name' => $this->input->post('inputFirstName'),
+			'last_name' => $this->input->post('inputLastName'),
+			'contact_number' => $this->input->post('inputContactNumber'),
+			'address' => $this->input->post('inputAddress'),
+			'email_address' => $this->input->post('inputEmailAddress'),
+			'picture' => $this->input->post('insertPicture'),
+		);
+
+		$insert = $this->db->insert('contacts', $new_contact_data);
+		return $insert;
+	}
+
 }

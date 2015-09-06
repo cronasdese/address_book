@@ -23,7 +23,7 @@
 		    </div>
 
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		      <form class="navbar-form navbar-left" role="search">
+		      <form class="navbar-form navbar-left" action="application/controllers/Welcome/search" method="post" role="search">
 		        <div class="form-group">
 		          <input type="text" class="form-control" placeholder="Search">
 		        </div>
@@ -41,8 +41,9 @@
 				foreach($contacts_info as $object){
 					echo '<div class="panel panel-default">
 					<div class="panel-heading lead">
+						<p class="hidden">' . $object->id . '</p>
 					  	<img src="data:image/jpeg;base64,'.base64_encode($object->picture).'" width="60px" height="60px">
-					  	&nbsp;&nbsp;'. $object->last_name . ', ' . $object->first_name .
+					  	&nbsp;&nbsp;'. $object->last_name . ', ' . $object->first_name . 
 					  	'<button type="submit" class="btn btn-default pull-right">Delete</button>
 					  	<button type="submit" class="btn btn-primary pull-right">Update</button>
 					  </div>
@@ -65,30 +66,30 @@
 		        </div>
 		        <div class="modal-body">
 		            <div>
-						<form class="form-horizontal" role="form" method="get">
+						<form class="form-horizontal" role="form" actionmethod="post">
 						    <div class="form-group">
 						      <label for="usr">First Name</label>
-						      <input type="text" class="form-control" id="inputFirstName" placeholder="First Name">
+						      <input type="text" class="form-control" name="inputFirstName" placeholder="First Name">
 						    </div>
 						    <div class="form-group">
 						      <label for="usr">Last Name</label>
-						      <input type="text" class="form-control" id="inputLastName" placeholder="Last Name">
+						      <input type="text" class="form-control" name="inputLastName" placeholder="Last Name">
 						    </div>
 						    <div class="form-group">
 						      <label for="usr">Contact Number</label>
-						      <input type="text" class="form-control" id="inputContactNumber" placeholder="Contact Number">
+						      <input type="text" class="form-control" name="inputContactNumber" placeholder="Contact Number">
 						    </div>
 						    <div class="form-group">
 						      <label for="usr">Address:</label>
-						      <input type="text" class="form-control" id="inputAddress" placeholder="Address">
+						      <input type="text" class="form-control" name="inputAddress" placeholder="Address">
 						    </div>
 						    <div class="form-group">
 						      <label for="usr">Email Address:</label>
-						      <input type="text" class="form-control" id="inputEmailAddress" placeholder="Contact Number">
+						      <input type="text" class="form-control" name="inputEmailAddress" placeholder="Contact Number">
 						    </div>
 						    <div class="form-group">
 						    	<label for="usr">Picture:</label>
-						    	<input type="file" class="form-control" id="inputImage"></br>
+						    	<input type="file" class="form-control" name="inputPicture"></br>
 						    </div>
 						</form>
 				    </div>
