@@ -11,11 +11,8 @@ class Contacts_ extends CI_Controller {
 
 	public function home(){
 		$this->load->model('contacts');
-
 		$data['title'] = 'Address Book';
-
 		$data['contacts_info'] = $this->contacts->getContacts();
-
 		$this->load->view('home', $data);
 	}
 
@@ -44,11 +41,8 @@ class Contacts_ extends CI_Controller {
 	public function search(){
 
 		$this->load->model('contacts');
-
 		$data['title'] = 'Address Book';
-
 		$data['contacts_info'] = $this->contacts->searchContact($_POST);
-
 		$this->load->view('home', $data);
 	}
 }
