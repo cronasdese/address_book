@@ -61,7 +61,8 @@ class Welcome extends CI_Controller {
 		$data['title'] = 'Address Book';
 
 		$data['contacts_info'] = $this->contacts->searchContact($_POST);
-		
+
 		$this->load->view('home', $data);
 	}
+
 }

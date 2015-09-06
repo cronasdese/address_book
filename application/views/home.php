@@ -23,11 +23,11 @@
 		    </div>
 
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		      <form class="navbar-form navbar-left" action="application/controllers/Welcome/search" method="post" role="search">
+		      <form class="navbar-form navbar-left" method="post" action="search" role="search">
 		        <div class="form-group">
-		          <input type="text" class="form-control" placeholder="Search">
+		          <input type="text" class="form-control" name="search" id="search" placeholder="Search">
 		        </div>
-		        <button type="submit" class="btn btn-default">Search</button>
+		        <a href="search"><button type="submit" class="btn btn-default">Search</button></a>
 		      </form>
 		      <ul class="nav navbar-nav navbar-right">
 		        <li><a href="#" data-toggle="modal" data-target="#addModal">Add Contacts</a></li>
@@ -45,7 +45,7 @@
 					  	<img src="data:image/jpeg;base64,'.base64_encode($object->picture).'" width="60px" height="60px">
 					  	&nbsp;&nbsp;'. $object->last_name . ', ' . $object->first_name . 
 					  	'<button type="submit" class="btn btn-default pull-right">Delete</button>
-					  	<button type="submit" class="btn btn-primary pull-right">Update</button>
+					  	<button type="submit" class="btn btn-primary pull-right" data-toggle="modal" data-target="#updateModal">Update</button>
 					  </div>
 					  <div class="panel-body">' .
 					  	$object->contact_number . '</br>' .
@@ -66,7 +66,52 @@
 		        </div>
 		        <div class="modal-body">
 		            <div>
-						<form class="form-horizontal" role="form" actionmethod="post">
+						<form class="form-horizontal" role="form" method="post">
+						    <div class="form-group">
+						      <label for="usr">First Name</label>
+						      <input type="text" class="form-control" name="inputFirstName" placeholder="First Name">
+						    </div>
+						    <div class="form-group">
+						      <label for="usr">Last Name</label>
+						      <input type="text" class="form-control" name="inputLastName" placeholder="Last Name">
+						    </div>
+						    <div class="form-group">
+						      <label for="usr">Contact Number</label>
+						      <input type="text" class="form-control" name="inputContactNumber" placeholder="Contact Number">
+						    </div>
+						    <div class="form-group">
+						      <label for="usr">Address:</label>
+						      <input type="text" class="form-control" name="inputAddress" placeholder="Address">
+						    </div>
+						    <div class="form-group">
+						      <label for="usr">Email Address:</label>
+						      <input type="text" class="form-control" name="inputEmailAddress" placeholder="Contact Number">
+						    </div>
+						    <div class="form-group">
+						    	<label for="usr">Picture:</label>
+						    	<input type="file" class="form-control" name="inputPicture"></br>
+						    </div>
+						</form>
+				    </div>
+		        </div>
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		          <button type="button" class="btn btn-primary" data-dismiss="modal">Add</button>
+		        </div>
+		      </div>
+		    </div>
+		</div>
+
+		<div class="modal fade" id="updateModal" role="dialog">
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title">Update Contact</h4>
+		        </div>
+		        <div class="modal-body">
+		            <div>
+						<form class="form-horizontal" role="form" method="post">
 						    <div class="form-group">
 						      <label for="usr">First Name</label>
 						      <input type="text" class="form-control" name="inputFirstName" placeholder="First Name">

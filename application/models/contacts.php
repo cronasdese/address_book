@@ -16,7 +16,7 @@ class Contacts extends CI_Model{
 	}
 
 	function searchContact($search){
-		$query = $this->db->query('SELECT * FROM contacts WHERE first_name LIKE %$search%');
+		$query = $this->db->query('SELECT * FROM contacts WHERE first_name LIKE "%$search%"');
 		if($query->num_rows() > 0){
 			return $query->result();
 		}
@@ -40,4 +40,21 @@ class Contacts extends CI_Model{
 		return $insert;
 	}
 
+	function deleteContact($id){
+		$delete = $this->db->delete('contacts', array('id' => $id));
+	}
+
+	function updateContact($id){
+		$updated_contact_data = array(
+			'first_name' => $this->input->post('inputFirstName'),
+			'last_name' => $this->input->post('inputLastName'),
+			'contact_number' => $this->input->post('inputContactNumber'),
+			'address' => $this->input->post('inputAddress'),
+			'email_address' => $this->input->post('inputEmailAddress'),
+			'picture' => $this->input->post('insertPicture'),
+		);
+
+		$this->db->where('id', $id);
+		$this->db->update('contact', $updated_contac_data);
+	}
 }
