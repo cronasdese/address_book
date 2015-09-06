@@ -16,7 +16,7 @@ class Contacts extends CI_Model{
 	}
 
 	function searchContact($search){
-		$query = $this->db->query('SELECT * FROM contacts WHERE first_name LIKE "%$search%" ORDER BY last_name');
+		$query = $this->db->query('SELECT * FROM contacts WHERE (first_name LIKE "%'.$search.'%") OR (last_name LIKE "%'.$search.'%") OR (contact_number LIKE "%'.$search.'%") OR (email_address LIKE "%'.$search.'%") OR (email_address LIKE "%'.$search.'%") ORDER BY last_name');
 		if($query->num_rows() > 0){
 			return $query->result();
 		}
@@ -25,19 +25,18 @@ class Contacts extends CI_Model{
 		}
 	}
 
-	function addContacts(){
+	function addContacts($first_name, $last_name, $contact_number, $address, $email_address, $image){
 
 		$new_contact_data = array(
-			'first_name' => $this->input->post('inputFirstName'),
-			'last_name' => $this->input->post('inputLastName'),
-			'contact_number' => $this->input->post('inputContactNumber'),
-			'address' => $this->input->post('inputAddress'),
-			'email_address' => $this->input->post('inputEmailAddress'),
-			'picture' => $this->input->post('insertPicture'),
+			'first_name' => $first_name,
+			'last_name' => $last_name,
+			'contact_number' => $contact_number,
+			'address' => $address,
+			'email_address' => $email_address,
+			'picture' => $image,
 		);
 
-		$insert = $this->db->insert('contacts', $new_contact_data);
-		return $insert;
+		$this->db->insert('contacts', $new_contact_data);
 	}
 
 	function deleteContact($id){
@@ -55,6 +54,6 @@ class Contacts extends CI_Model{
 		);
 
 		$this->db->where('id', $id);
-		$this->db->update('contact', $updated_contac_data);
+		$this->db->update('contact', $updated_contact_data);
 	}
 }

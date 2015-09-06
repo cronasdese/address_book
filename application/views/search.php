@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<title><?php echo $title; ?></title>
-		<?php $this->load->helper('url') ?>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href= "assets/css/bootstrap-responsive.css" rel="stylesheet" >
 		<link rel= "stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" >
 		<script src= "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>
 		<script src= "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" ></script>
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/home.css"/>
+		<link rel="stylesheet" type="text/css" href="css/home.css"/>
 	</title>
 	<body>
 		<nav class="navbar navbar-fixed-top navbar-default">
@@ -20,15 +19,15 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="<?php echo base_url(); ?>">Address Book</a>
+		      <a class="navbar-brand" href="#">Address Book</a>
 		    </div>
 
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		      <form class="navbar-form navbar-left" method="GET" action="<?php echo base_url(); ?>Contacts_/search" role="search">
+		      <form class="navbar-form navbar-left" method="post" action="search" role="search">
 		        <div class="form-group">
 		          <input type="text" class="form-control" name="search" id="search" placeholder="Search">
 		        </div>
-		        <button type="submit" class="btn btn-default" name="action">Search</button>
+		        <a href="search"><button type="submit" class="btn btn-default">Search</button></a>
 		      </form>
 		      <ul class="nav navbar-nav navbar-right">
 		        <li><a href="#" data-toggle="modal" data-target="#addModal">Add Contacts</a></li>
@@ -43,15 +42,11 @@
 					foreach($contacts_info as $object){
 						echo '<div class="panel panel-default">
 						<div class="panel-heading lead">
+							<p class="hidden">' . $object->id . '</p>
 						  	<img src="data:image/jpeg;base64,'.base64_encode($object->picture).'" width="60px" height="60px">
 						  	&nbsp;&nbsp;'. $object->last_name . ', ' . $object->first_name . 
-						  	'<form method="GET" action="' . base_url() . 'Contacts_/delete">
-						  		<input type="text" class="hidden" name="contact_id" id="contact_id" placeholder="' . $object->id . '">
-						  		<button type="submit" class="btn btn-default pull-right">Delete</button>
-						  	</form>
-						  	<form>
-						  		<button type="submit" class="btn btn-primary pull-right" data-toggle="modal" data-target="#updateModal">Update</button>
-						  	</form>
+						  	'<a href="delete"><button type="submit" class="btn btn-default pull-right">Delete</button></a>
+						  	<button type="submit" class="btn btn-primary pull-right" data-toggle="modal" data-target="#updateModal">Update</button>
 						  </div>
 						  <div class="panel-body">' .
 						  	$object->contact_number . '</br>' .
@@ -60,16 +55,6 @@
 						  '</div>
 						</div>';
 					}
-				}
-				else{
-					echo'<div class="panel panel-default">
-						<div class="panel-heading lead">
-							Error
-						</div>
-						<div class="panel-body">
-							Contact does not exist.
-						</div>
-					</div>';
 				}
 			?>
 		</div>
@@ -83,7 +68,7 @@
 		        </div>
 		        <div class="modal-body">
 		            <div>
-						<form class="form-horizontal" role="form" method="GET" action="<?php echo base_url(); ?>Contacts_/addContact">
+						<form class="form-horizontal" role="form" method="post">
 						    <div class="form-group">
 						      <label for="usr">First Name</label>
 						      <input type="text" class="form-control" name="inputFirstName" placeholder="First Name">
@@ -108,12 +93,12 @@
 						    	<label for="usr">Picture:</label>
 						    	<input type="file" class="form-control" name="inputPicture"></br>
 						    </div>
-						    <div class="modal-footer">
-					          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					          <button type="submit" class="btn btn-primary" data-dismiss="modal" name="action">Add</button>
-					        </div> 
 						</form>
 				    </div>
+		        </div>
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		          <button type="button" class="btn btn-primary" data-dismiss="modal">Add</button>
 		        </div>
 		      </div>
 		    </div>

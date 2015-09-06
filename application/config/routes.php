@@ -52,4 +52,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'Contacts_';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
-$routes['search'] = 'contacts/search';
+$routes['search'] = 'contacts_/search';
+$routes['search'] = 'contacts_/delete';
+$routes['add'] = 'contacts_/addContact';
