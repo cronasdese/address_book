@@ -8,7 +8,7 @@
 		<link rel= "stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" >
 		<script src= "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>
 		<script src= "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" ></script>
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/home.css"/>
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/home.css"/>
 	</title>
 	<body>
 		<nav class="navbar navbar-fixed-top navbar-default">
@@ -43,13 +43,11 @@
 					foreach($contacts_info as $object){
 						echo '<div class="panel panel-default">
 						<div class="panel-heading lead">
-						  	<img src="data:image/jpeg;base64,'.base64_encode($object->picture).'" width="60px" height="60px">
-						  	&nbsp;&nbsp;'. $object->last_name . ', ' . $object->first_name . 
-						  	'<form method="GET" action="' . base_url() . 'Contacts_/delete">
-						  		<input type="text" class="hidden" name="contact_id" id="contact_id" placeholder="' . $object->id . '">
+						  	<img src="'.$object->picture.'" width="60px" height="60px">
+						  	&nbsp;&nbsp;' . $object->last_name . ', ' . $object->first_name . 
+						  	'<form method="GET" class="inline" action="' . base_url() . 'Contacts_/delete">
+						  		 <input type="text" class="form-control hidden" name="contact_id" placeholder="'. $object->id .'">
 						  		<button type="submit" class="btn btn-default pull-right">Delete</button>
-						  	</form>
-						  	<form>
 						  		<button type="submit" class="btn btn-primary pull-right" data-toggle="modal" data-target="#updateModal">Update</button>
 						  	</form>
 						  </div>
@@ -110,7 +108,7 @@
 						    </div>
 						    <div class="modal-footer">
 					          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					          <button type="submit" class="btn btn-primary" data-dismiss="modal" name="action">Add</button>
+					          <button type="submit" class="btn btn-primary" name="action">Add</button>
 					        </div> 
 						</form>
 				    </div>
