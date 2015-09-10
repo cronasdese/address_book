@@ -8,7 +8,46 @@
 		<link rel= "stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" >
 		<script src= "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>
 		<script src= "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" ></script>
+		<script src ='<?php echo base_url();?>assets/js/jquery-2.1.4.min.js'></script>
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/home.css"/>
+		<script>
+		
+			$(document).on("click", ".open-UpdateModal", function () {
+			     var firstname = $(this).data('firstname');
+			     var lastname = $(this).data('lastname');
+			     var contactnumber = $(this).data('contactnumber');
+			     var address = $(this).data('address');
+			     var emailaddress = $(this).data('emailaddress');
+			     var id = $(this).data('id');
+			     var picture = $(this).data('picture');
+
+			     $(".modal-body #id").val( id );
+			     $(".modal-body #firstname").val( firstname );
+			     $(".modal-body #lastname").val( lastname );
+			     $(".modal-body #contactnumber").val( contactnumber );
+			     $(".modal-body #address").val( address );
+			     $(".modal-body #emailaddress").val( emailaddress );
+			     $(".modal-body #picture").val( picture );
+			});
+
+			$(document).on("click", ".open-DeleteModal", function () {
+			     /*var firstname = $(this).data('firstname');
+			     var lastname = $(this).data('lastname');
+			     var contactnumber = $(this).data('contactnumber');
+			     var address = $(this).data('address');
+			     var emailaddress = $(this).data('emailaddress');
+			     var picture = $(this).data('picture');*/
+			     var id = $(this).data('id');
+			     
+			     $(".modal-footer #id").val( id );
+			     /*$(".modal-header #firstname").val( firstname );
+			     $(".panel-body #contactnumber").val( contactnumber );
+			     $(".modal-body #address").val( address );
+			     $(".modal-body #emailaddress").val( emailaddress );
+			     $(".modal-body #picture").val( picture );*/
+			});
+
+		</script>
 	</title>
 	<body>
 		<nav class="navbar navbar-fixed-top navbar-default">
@@ -44,12 +83,9 @@
 						echo '<div class="panel panel-default">
 						<div class="panel-heading lead">
 						  	<img src="'.$object->picture.'" width="60px" height="60px">
-						  	&nbsp;&nbsp;' . $object->last_name . ', ' . $object->first_name . 
-						  	'<form method="GET" class="inline" action="' . base_url() . 'Contacts_/delete">
-						  		 <input type="text" class="form-control hidden" name="contact_id" value="'. $object->id .'">
-						  		<button type="submit" class="btn btn-default pull-right">Delete</button>
-						  		<button type="submit" class="btn btn-primary pull-right" data-toggle="modal" data-target="#updateModal">Update</button>
-						  	</form>
+						  	&nbsp;&nbsp;' . $object->last_name . ', ' . $object->first_name . '
+						  	<button type="button" class="open-DeleteModal btn btn-default pull-right" data-toggle="modal" data-target="#deleteModal" data-id="'. $object->id .'">Delete</button>
+						  	<button type="button" class="open-UpdateModal btn btn-primary pull-right" data-toggle="modal" data-target="#updateModal" data-id="'. $object->id .'" data-firstname="'. $object->first_name .'" data-lastname="'. $object->last_name .'" data-contactnumber="'. $object->contact_number .'" data-address="'. $object->address .'" data-emailaddress="'. $object->email_address .'" data-picture="'. $object->picture .'">Update</button>
 						  </div>
 						  <div class="panel-body">' .
 						  	$object->contact_number . '</br>' .
@@ -81,7 +117,7 @@
 		        </div>
 		        <div class="modal-body">
 		            <div>
-						<form class="form-horizontal" role="form" method="GET" action="<?php echo base_url(); ?>Contacts_/addContact">
+						<form class="form-horizontal" role="form" method="GET" action="<?php echo base_url(); ?>Contacts_/addcontact">
 						    <div class="form-group">
 						      <label for="usr">First Name</label>
 						      <input type="text" class="form-control" name="inputFirstName" placeholder="First Name">
@@ -126,37 +162,63 @@
 		        </div>
 		        <div class="modal-body">
 		            <div>
-						<form class="form-horizontal" role="form" method="post">
+						<form class="form-horizontal" role="form" method="GET" action="<?php echo base_url(); ?>Contacts_/update">
+							<div class="form-group hidden">
+						      <label for="usr">ID</label>
+						      <input type="text" class="form-control" name="inputID" id="id">
+						    </div>
 						    <div class="form-group">
 						      <label for="usr">First Name</label>
-						      <input type="text" class="form-control" name="inputFirstName" placeholder="First Name">
+						      <input type="text" class="form-control" name="inputFirstName" id="firstname">
 						    </div>
 						    <div class="form-group">
 						      <label for="usr">Last Name</label>
-						      <input type="text" class="form-control" name="inputLastName" placeholder="Last Name">
+						      <input type="text" class="form-control" name="inputLastName" id="lastname">
 						    </div>
 						    <div class="form-group">
 						      <label for="usr">Contact Number</label>
-						      <input type="text" class="form-control" name="inputContactNumber" placeholder="Contact Number">
+						      <input type="text" class="form-control" name="inputContactNumber" id="contactnumber">
 						    </div>
 						    <div class="form-group">
 						      <label for="usr">Address:</label>
-						      <input type="text" class="form-control" name="inputAddress" placeholder="Address">
+						      <input type="text" class="form-control" name="inputAddress" id="address">
 						    </div>
 						    <div class="form-group">
 						      <label for="usr">Email Address:</label>
-						      <input type="text" class="form-control" name="inputEmailAddress" placeholder="Contact Number">
+						      <input type="text" class="form-control" name="inputEmailAddress" id="emailaddress">
 						    </div>
 						    <div class="form-group">
 						    	<label for="usr">Picture:</label>
-						    	<input type="file" class="form-control" name="inputPicture"></br>
+						    	<input type="file" class="form-control" name="inputPicture" id="picture"></br>
 						    </div>
+						    <div class="modal-footer">
+					          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					          <button type="submit" class="btn btn-primary" name="action">Update</button>
+					        </div>
 						</form>
 				    </div>
 		        </div>
-		        <div class="modal-footer">
-		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		          <button type="button" class="btn btn-primary" data-dismiss="modal">Add</button>
+		      </div>
+		    </div>
+		</div>
+
+		<div class="modal fade" id="deleteModal" role="dialog">
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title">Are you sure you want to delete this contact?</h4>
+		        </div>
+					<form class="form-horizontal" role="form" method="GET" action="<?php echo base_url(); ?>Contacts_/delete">
+					    <div class="modal-footer">
+					    	<div class="form-group hidden">
+						      <label for="usr">ID</label>
+						      <input type="text" class="form-control" name="inputID" id="id">
+						    </div>
+				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				          <button type="submit" class="btn btn-primary" name="action">Delete</button>
+				        </div>
+					</form>
 		        </div>
 		      </div>
 		    </div>

@@ -16,7 +16,7 @@ class Contacts extends CI_Model{
 	}
 
 	function searchContact($search){
-		$query = $this->db->query('SELECT * FROM contacts WHERE (first_name LIKE "%'.$search.'%") OR (last_name LIKE "%'.$search.'%") OR (contact_number LIKE "%'.$search.'%") OR (email_address LIKE "%'.$search.'%") OR (email_address LIKE "%'.$search.'%") ORDER BY last_name');
+		$query = $this->db->query('SELECT * FROM contacts WHERE (first_name LIKE "%'.$search.'%") OR (last_name LIKE "%'.$search.'%") OR (contact_number LIKE "%'.$search.'%") OR (email_address LIKE "%'.$search.'%") OR (email_address LIKE "%'.$search.'%") OR (id ='.$search.') ORDER BY last_name');
 		if($query->num_rows() > 0){
 			return $query->result();
 		}
@@ -43,17 +43,32 @@ class Contacts extends CI_Model{
 		$delete = $this->db->delete('contacts', array('id' => $id));
 	}
 
-	function updateContact($id){
+	function updateContact($id, $first_name, $last_name, $contact_number, $address, $email_address, $image){
+		
 		$updated_contact_data = array(
-			'first_name' => $this->input->post('inputFirstName'),
-			'last_name' => $this->input->post('inputLastName'),
-			'contact_number' => $this->input->post('inputContactNumber'),
-			'address' => $this->input->post('inputAddress'),
-			'email_address' => $this->input->post('inputEmailAddress'),
-			'picture' => $this->input->post('insertPicture'),
+			'first_name' => $first_name,
+			'last_name' => $last_name,
+			'contact_number' => $contact_number,
+			'address' => $address,
+			'email_address' => $email_address,
+			'picture' => $image,
 		);
 
 		$this->db->where('id', $id);
-		$this->db->update('contact', $updated_contact_data);
+		$this->db->update('contacts', $updated_contact_data);
+	}
+
+	function updateContactNoPic($id, $first_name, $last_name, $contact_number, $address, $email_address){
+		
+		$updated_contact_data = array(
+			'first_name' => $first_name,
+			'last_name' => $last_name,
+			'contact_number' => $contact_number,
+			'address' => $address,
+			'email_address' => $email_address,
+		);
+
+		$this->db->where('id', $id);
+		$this->db->update('contacts', $updated_contact_data);
 	}
 }

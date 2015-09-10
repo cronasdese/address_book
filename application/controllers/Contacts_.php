@@ -26,12 +26,13 @@ class Contacts_ extends CI_Controller {
 		$address = $_GET['inputAddress'];
 		$email_address = $_GET['inputEmailAddress'];
 		$image = 'assets/images/' . $_GET['inputPicture'];
-		
+
 		$this->contacts->addContacts($first_name, $last_name, $contact_number, $address, $email_address, $image);
 
 		$data['title'] = 'Address Book';
 		$data['contacts_info'] = $this->contacts->getContacts();
 		$this->load->view('home', $data);
+		redirect();
 
 	}
 
@@ -45,12 +46,37 @@ class Contacts_ extends CI_Controller {
 
 	public function delete(){
 		$this->load->model('contacts');
-		$id = $_GET['contact_id'];
+		$id = $_GET['inputID'];
 		$this->contacts->deleteContact($id);
 
 		$data['title'] = 'Address Book';
 		$data['contacts_info'] = $this->contacts->getContacts();
 		$this->load->view('home', $data);
+		redirect();
+	}
+
+	public function update(){
+		$this->load->helper('url');
+		$this->load->model('contacts');
+
+		$first_name = $_GET['inputFirstName'];
+		$last_name = $_GET['inputLastName'];
+		$contact_number = $_GET['inputContactNumber'];
+		$address = $_GET['inputAddress'];
+		$email_address = $_GET['inputEmailAddress'];
+		$id = $_GET['inputID'];
+		if(!isset($_GET['inputPicture'])){
+			$this->contacts->updateContactNoPic($id, $first_name, $last_name, $contact_number, $address, $email_address);
+		}
+		else{
+			$image = 'assets/images/' . $_GET['inputPicture'];
+			$this->contacts->updateContact($id, $first_name, $last_name, $contact_number, $address, $email_address, $image);
+		}
+
+		$data['title'] = 'Address Book';
+		$data['contacts_info'] = $this->contacts->getContacts();
+		$this->load->view('home', $data);
+		redirect();
 	}
 }
 ?>
