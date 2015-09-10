@@ -46,7 +46,7 @@
 						  	<img src="'.$object->picture.'" width="60px" height="60px">
 						  	&nbsp;&nbsp;' . $object->last_name . ', ' . $object->first_name . 
 						  	'<form method="GET" class="inline" action="' . base_url() . 'Contacts_/delete">
-						  		 <input type="text" class="form-control hidden" name="contact_id" placeholder="'. $object->id .'">
+						  		 <input type="text" class="form-control hidden" name="contact_id" value="'. $object->id .'">
 						  		<button type="submit" class="btn btn-default pull-right">Delete</button>
 						  		<button type="submit" class="btn btn-primary pull-right" data-toggle="modal" data-target="#updateModal">Update</button>
 						  	</form>

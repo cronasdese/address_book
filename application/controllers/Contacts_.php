@@ -26,6 +26,7 @@ class Contacts_ extends CI_Controller {
 		$address = $_GET['inputAddress'];
 		$email_address = $_GET['inputEmailAddress'];
 		$image = 'assets/images/' . $_GET['inputPicture'];
+		
 		$this->contacts->addContacts($first_name, $last_name, $contact_number, $address, $email_address, $image);
 
 		$data['title'] = 'Address Book';
