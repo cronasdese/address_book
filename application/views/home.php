@@ -5,13 +5,27 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href= "assets/css/bootstrap-responsive.css" rel="stylesheet" >
-		<link rel= "stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" >
-		<script src= "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>
-		<script src= "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" ></script>
-		<script src ='<?php echo base_url();?>assets/js/jquery-2.1.4.min.js'></script>
+		<link rel= "stylesheet" href='<?php echo base_url();?>assets/css/bootstrap.min.class' >
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/home.css"/>
+		<script src ='<?php echo base_url();?>assets/js/bootstrap.min.js'></script>
+		<script src ='<?php echo base_url();?>assets/js/jquery-2.1.4.min.js'></script>
+		<script src ='<?php echo base_url();?>assets/js/bootstrap.js'></script>
+		<script src ='<?php echo base_url();?>assets/js/npm.js'></script>
+
 		<script>
-		
+			/*var add_err = <?php echo json_encode($err_add) ?>;
+			function err_add(add_err{
+				return add_err;
+			}
+
+			if(add_err > 0){
+				document.alert('Failed to add contact');
+			}
+			$(document).ready(function(){
+					$('#addModal').modal('show');			
+
+			});*/	
+
 			$(document).on("click", ".open-UpdateModal", function () {
 			     var firstname = $(this).data('firstname');
 			     var lastname = $(this).data('lastname');
@@ -31,22 +45,10 @@
 			});
 
 			$(document).on("click", ".open-DeleteModal", function () {
-			     /*var firstname = $(this).data('firstname');
-			     var lastname = $(this).data('lastname');
-			     var contactnumber = $(this).data('contactnumber');
-			     var address = $(this).data('address');
-			     var emailaddress = $(this).data('emailaddress');
-			     var picture = $(this).data('picture');*/
 			     var id = $(this).data('id');
 			     
 			     $(".modal-footer #id").val( id );
-			     /*$(".modal-header #firstname").val( firstname );
-			     $(".panel-body #contactnumber").val( contactnumber );
-			     $(".modal-body #address").val( address );
-			     $(".modal-body #emailaddress").val( emailaddress );
-			     $(".modal-body #picture").val( picture );*/
 			});
-
 		</script>
 	</title>
 	<body>

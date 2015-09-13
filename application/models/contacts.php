@@ -39,6 +39,19 @@ class Contacts extends CI_Model{
 		$this->db->insert('contacts', $new_contact_data);
 	}
 
+	function addContactsNoPic($first_name, $last_name, $contact_number, $address, $email_address){
+
+		$new_contact_data = array(
+			'first_name' => $first_name,
+			'last_name' => $last_name,
+			'contact_number' => $contact_number,
+			'address' => $address,
+			'email_address' => $email_address,
+		);
+
+		$this->db->insert('contacts', $new_contact_data);
+	}
+
 	function deleteContact($id){
 		$delete = $this->db->delete('contacts', array('id' => $id));
 	}
