@@ -51,7 +51,7 @@
 		    </div>
 
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		      <form class="navbar-form navbar-left" method="GET" action="<?php echo base_url('Contacts_/search'); ?>" role="search">
+		      <form class="navbar-form navbar-left" method="GET" action="<?php echo base_url('Contacts/search'); ?>" role="search">
 		        <div class="form-group">
 		          <input type="text" class="form-control" name="search" id="search" placeholder="Search">
 		        </div>
@@ -105,8 +105,7 @@
 		        </div>
 		        <div class="modal-body">
 		            <div>
-						<form class="form-horizontal" role="form" method="GET" action="<?php echo base_url('Contacts_/addcontact'); ?>">
-						    <?php $this->load->library('form_validation') ?>
+						<form class="form-horizontal" role="form" method="POST" action="<?php echo base_url('Contacts/addcontact'); ?>" enctype="multipart/form-data">
 						    <div class="form-group">
 						      <label for="usr">First Name</label>
 						      <input type="text" class="form-control" name="inputFirstName" placeholder="First Name">
@@ -125,7 +124,7 @@
 						    </div>
 						    <div class="form-group">
 						      <label for="usr">Email Address:</label>
-						      <input type="text" class="form-control" name="inputEmailAddress" placeholder="Contact Number">
+						      <input type="text" class="form-control" name="inputEmailAddress" placeholder="Email Address">
 						    </div>
 						    <div class="form-group">
 						    	<label for="usr">Picture:</label>
@@ -134,8 +133,7 @@
 						    <div class="modal-footer">
 					          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					          <button type="submit" class="btn btn-primary" name="action">Add</button>
-					        </div> 
-					        <?php echo validation_errors(); ?>
+					        </div>
 						</form>
 				    </div>
 		        </div>
@@ -152,7 +150,7 @@
 		        </div>
 		        <div class="modal-body">
 		            <div>
-						<form class="form-horizontal" role="form" method="GET" action="<?php echo base_url('Contacts_/update'); ?>">
+						<form class="form-horizontal" role="form" method="POST" action="<?php echo base_url('Contacts/update'); ?>" enctype="multipart/form-data">
 							<div class="form-group hidden">
 						      <label for="usr">ID</label>
 						      <input type="text" class="form-control" name="inputID" id="id">
@@ -199,7 +197,7 @@
 		          <button type="button" class="close" data-dismiss="modal">&times;</button>
 		          <h4 class="modal-title">Are you sure you want to delete this contact?</h4>
 		        </div>
-					<form class="form-horizontal" role="form" method="GET" action="<?php echo base_url('Contacts_/delete'); ?>">
+					<form class="form-horizontal" role="form" method="GET" action="<?php echo base_url('Contacts/delete'); ?>">
 					    <div class="modal-footer">
 					    	<div class="form-group hidden">
 						      <label for="usr">ID</label>

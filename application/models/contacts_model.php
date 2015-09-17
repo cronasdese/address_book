@@ -1,6 +1,6 @@
 <?php
 
-class Contacts extends CI_Model{
+class Contacts_model extends CI_Model{
 	function __construct(){
 		parent::__construct(); // Call the model constructor
 	}
