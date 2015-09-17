@@ -4,27 +4,13 @@
 		<?php $this->load->helper('url') ?>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link href= "assets/css/bootstrap-responsive.css" rel="stylesheet" >
-		<link rel= "stylesheet" href='<?php echo base_url();?>assets/css/bootstrap.min.class' >
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/home.css"/>
-		<script src ='<?php echo base_url();?>assets/js/bootstrap.min.js'></script>
-		<script src ='<?php echo base_url();?>assets/js/jquery-2.1.4.min.js'></script>
-		<script src ='<?php echo base_url();?>assets/js/bootstrap.js'></script>
-		<script src ='<?php echo base_url();?>assets/js/npm.js'></script>
+		<link rel="stylesheet" href= "<?php echo base_url('assets/css/bootstrap-responsive.css');?>"  >
+		<link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css');?>" >
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/home.css'); ?>">
+		<script src ="<?php echo base_url('assets/js/jquery-2.1.4.min.js');?>"></script>
+		<script src ="<?php echo base_url('assets/js/bootstrap.min.js');?>"></script>	
 
 		<script>
-			/*var add_err = <?php echo json_encode($err_add) ?>;
-			function err_add(add_err{
-				return add_err;
-			}
-
-			if(add_err > 0){
-				document.alert('Failed to add contact');
-			}
-			$(document).ready(function(){
-					$('#addModal').modal('show');			
-
-			});*/	
 
 			$(document).on("click", ".open-UpdateModal", function () {
 			     var firstname = $(this).data('firstname');
@@ -65,7 +51,7 @@
 		    </div>
 
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		      <form class="navbar-form navbar-left" method="GET" action="<?php echo base_url(); ?>Contacts_/search" role="search">
+		      <form class="navbar-form navbar-left" method="GET" action="<?php echo base_url('Contacts_/search'); ?>" role="search">
 		        <div class="form-group">
 		          <input type="text" class="form-control" name="search" id="search" placeholder="Search">
 		        </div>
@@ -84,7 +70,7 @@
 					foreach($contacts_info as $object){
 						echo '<div class="panel panel-default">
 						<div class="panel-heading lead">
-						  	<img src="'.$object->picture.'" width="60px" height="60px">
+						  	<img src="'. base_url($object->picture) .'" width="60px" height="60px">
 						  	&nbsp;&nbsp;' . $object->last_name . ', ' . $object->first_name . '
 						  	<button type="button" class="open-DeleteModal btn btn-default pull-right" data-toggle="modal" data-target="#deleteModal" data-id="'. $object->id .'">Delete</button>
 						  	<button type="button" class="open-UpdateModal btn btn-primary pull-right" data-toggle="modal" data-target="#updateModal" data-id="'. $object->id .'" data-firstname="'. $object->first_name .'" data-lastname="'. $object->last_name .'" data-contactnumber="'. $object->contact_number .'" data-address="'. $object->address .'" data-emailaddress="'. $object->email_address .'" data-picture="'. $object->picture .'">Update</button>
@@ -119,7 +105,8 @@
 		        </div>
 		        <div class="modal-body">
 		            <div>
-						<form class="form-horizontal" role="form" method="GET" action="<?php echo base_url(); ?>Contacts_/addcontact">
+						<form class="form-horizontal" role="form" method="GET" action="<?php echo base_url('Contacts_/addcontact'); ?>">
+						    <?php $this->load->library('form_validation') ?>
 						    <div class="form-group">
 						      <label for="usr">First Name</label>
 						      <input type="text" class="form-control" name="inputFirstName" placeholder="First Name">
@@ -148,6 +135,7 @@
 					          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					          <button type="submit" class="btn btn-primary" name="action">Add</button>
 					        </div> 
+					        <?php echo validation_errors(); ?>
 						</form>
 				    </div>
 		        </div>
@@ -164,7 +152,7 @@
 		        </div>
 		        <div class="modal-body">
 		            <div>
-						<form class="form-horizontal" role="form" method="GET" action="<?php echo base_url(); ?>Contacts_/update">
+						<form class="form-horizontal" role="form" method="GET" action="<?php echo base_url('Contacts_/update'); ?>">
 							<div class="form-group hidden">
 						      <label for="usr">ID</label>
 						      <input type="text" class="form-control" name="inputID" id="id">
@@ -211,7 +199,7 @@
 		          <button type="button" class="close" data-dismiss="modal">&times;</button>
 		          <h4 class="modal-title">Are you sure you want to delete this contact?</h4>
 		        </div>
-					<form class="form-horizontal" role="form" method="GET" action="<?php echo base_url(); ?>Contacts_/delete">
+					<form class="form-horizontal" role="form" method="GET" action="<?php echo base_url('Contacts_/delete'); ?>">
 					    <div class="modal-footer">
 					    	<div class="form-group hidden">
 						      <label for="usr">ID</label>

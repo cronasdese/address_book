@@ -16,7 +16,7 @@ class Contacts extends CI_Model{
 	}
 
 	function searchContact($search){
-		$query = $this->db->query('SELECT * FROM contacts WHERE (first_name LIKE "%'.$search.'%") OR (last_name LIKE "%'.$search.'%") OR (contact_number LIKE "%'.$search.'%") OR (email_address LIKE "%'.$search.'%") OR (email_address LIKE "%'.$search.'%") OR (id ='.$search.') ORDER BY last_name');
+		$query = $this->db->query('SELECT * FROM contacts WHERE (first_name LIKE "%'.$search.'%") OR (last_name LIKE "%'.$search.'%") OR (contact_number LIKE "%'.$search.'%") OR (email_address LIKE "%'.$search.'%") OR (email_address LIKE "%'.$search.'%") ORDER BY last_name');
 		if($query->num_rows() > 0){
 			return $query->result();
 		}
