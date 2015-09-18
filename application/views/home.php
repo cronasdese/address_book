@@ -66,12 +66,22 @@
 
 		<div class="container">
 			<?php
+				if($err == TRUE){
+					echo'<div class="panel panel-default">
+						<div class="panel-heading lead">
+							Error
+						</div>
+						<div class="panel-body">
+							Adding/updating contact failed.
+						</div>
+					</div>';
+				}
 				if(is_array($contacts_info) || is_object($contacts_info)){
 					foreach($contacts_info as $object){
 						echo '<div class="panel panel-default">
 						<div class="panel-heading lead">
 						  	<img src="'. base_url($object->picture) .'" width="60px" height="60px">
-						  	&nbsp;&nbsp;' . $object->last_name . ', ' . $object->first_name . '
+						  	&nbsp;&nbsp;' . $object->last_name . ', ' . $object->first_name .'
 						  	<button type="button" class="open-DeleteModal btn btn-default pull-right" data-toggle="modal" data-target="#deleteModal" data-id="'. $object->id .'">Delete</button>
 						  	<button type="button" class="open-UpdateModal btn btn-primary pull-right" data-toggle="modal" data-target="#updateModal" data-id="'. $object->id .'" data-firstname="'. $object->first_name .'" data-lastname="'. $object->last_name .'" data-contactnumber="'. $object->contact_number .'" data-address="'. $object->address .'" data-emailaddress="'. $object->email_address .'" data-picture="'. $object->picture .'">Update</button>
 						  </div>
@@ -177,7 +187,7 @@
 						    </div>
 						    <div class="form-group">
 						    	<label for="usr">Picture:</label>
-						    	<input type="file" class="form-control" name="inputPicture" id="picture"></br>
+						    	<input type="file" class="form-control" name="userfile" id="picture"></br>
 						    </div>
 						    <div class="modal-footer">
 					          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
