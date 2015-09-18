@@ -128,7 +128,7 @@
 						    </div>
 						    <div class="form-group">
 						    	<label for="usr">Picture:</label>
-						    	<input type="file" class="form-control" name="inputPicture"></br>
+						    	<input type="file" class="form-control" name="userfile"></br>
 						    </div>
 						    <div class="modal-footer">
 					          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -184,7 +184,7 @@
 					          <button type="submit" class="btn btn-primary" name="action">Update</button>
 					        </div>
 						</form>
-				    </div>
+				    </div>	
 		        </div>
 		      </div>
 		    </div>

@@ -24,8 +24,12 @@ class Contacts extends CI_Controller {
 		$contact_number = $this->input->post('inputContactNumber');
 		$address = $this->input->post('inputAddress');
 		$email_address = $this->input->post('inputEmailAddress');
-		$image_url = $_FILES['inputPicture']['name'];
-		//print_r($_FILES); exit;
+
+		//for file upload
+		$config['upload_path'] = './assets/images';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$this->load->library('upload', $config);
+
 		$this->form_validation->set_rules('inputFirstName', 'First Name', 'required|max_length[35]');
 		$this->form_validation->set_rules('inputLastName', 'Last Name', 'required|max_length[35]');
 		$this->form_validation->set_rules('inputContactNumber', 'Contact Number', 'required|exact_length[11]|numeric');
@@ -39,10 +43,14 @@ class Contacts extends CI_Controller {
 			redirect();
 		}
 		else{
-			if(!isset($_FILES['inputImage'])){
+			if(!$this->upload->do_upload()){
+				//if there is no picture selected
 				$this->contacts_model->addContactsNoPic($first_name, $last_name, $contact_number, $address, $email_address);
 			}
 			else{
+				//to get filename of pic
+				$upload_data = $this->upload->data();
+				$image_url = $upload_data['file_name'];
 				$image = 'assets/images/' . $image_url;
 				$this->contacts_model->addContacts($first_name, $last_name, $contact_number, $address, $email_address, $image);
 			}
