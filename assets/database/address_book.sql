@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 10, 2015 at 02:43 PM
+-- Generation Time: Nov 16, 2015 at 06:29 PM
 -- Server version: 5.6.25
 -- PHP Version: 5.6.11
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `contacts` (
   `address` varchar(255) NOT NULL,
   `email_address` varchar(255) NOT NULL,
   `picture` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10000012 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10000017 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `contacts`
@@ -46,8 +46,9 @@ INSERT INTO `contacts` (`id`, `first_name`, `last_name`, `contact_number`, `addr
 (10000003, 'Alexander', 'Pascual', '09066910690', 'Bacoor, Cavite', 'alex@yahoo.com', 'assets/images/alex.jpg'),
 (10000004, 'Joshua Paolo', 'Badillo', '09069454564', 'Batangas City, Batangas', 'josh@yahoo.com', 'assets/images/joshua.jpg'),
 (10000005, 'Jan Patrick', 'Claro', '09168500609', 'Novaliches, QC', 'pat@yahoo.com', 'assets/images/patrick.jpg'),
-(10000006, 'Blaze', 'Cat', '09152222322', 'Pag-asa', 'blazethecat@yahoo.com', 'assets/images/11214216_1676087409278013_2550162454402705789_n.jpg'),
-(10000008, 'Creamer', 'Dog', '09125551232', 'Pag-asa', 'creamerthedog@yahoo.com', 'assets/images/11194626_10206381686763453_2882157687646071140_o_2.jpg');
+(10000006, 'Blaze', 'Cat', '09152222323', 'Pag-asa', 'blazethecat@yahoo.com', 'assets/images/f432f18768a760db9b2e106e2c930cf01.jpg'),
+(10000008, 'Creamer', 'Dog', '09125551232', 'Pag-asa', 'creamerthedog@yahoo.com', 'assets/images/11194626_10206381686763453_2882157687646071140_o_2.jpg'),
+(10000016, 'Sto', 'Nino', '09123331111', 'Sto Nino Mountains', 'stonino@yahoo.com', 'assets/images/avatar.png');
 
 --
 -- Indexes for dumped tables
@@ -67,7 +68,7 @@ ALTER TABLE `contacts`
 -- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10000012;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10000017;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

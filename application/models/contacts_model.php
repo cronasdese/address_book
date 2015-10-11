@@ -25,6 +25,26 @@ class Contacts_model extends CI_Model{
 		}
 	}
 
+	function searchContactUpdateDuplicate($searchid, $searchcontact){
+		$query = $this->db->query('SELECT * FROM contacts WHERE contact_number = "'.$searchcontact.'" AND id != "'.$searchid.'"');
+		if($query->num_rows() > 0){
+			return $query->result();
+		}
+		else{
+			return NULL;
+		}
+	}
+
+	function searchLetterContact($search){
+		$query = $this->db->query('SELECT * FROM contacts WHERE last_name LIKE "'.$search.'%" ORDER BY last_name');
+		if($query->num_rows() > 0){
+			return $query->result();
+		}
+		else{
+			return NULL;
+		}
+	}
+
 	function addContacts($first_name, $last_name, $contact_number, $address, $email_address, $image){
 
 		$new_contact_data = array(
@@ -34,19 +54,6 @@ class Contacts_model extends CI_Model{
 			'address' => $address,
 			'email_address' => $email_address,
 			'picture' => $image,
-		);
-
-		$this->db->insert('contacts', $new_contact_data);
-	}
-
-	function addContactsNoPic($first_name, $last_name, $contact_number, $address, $email_address){
-
-		$new_contact_data = array(
-			'first_name' => $first_name,
-			'last_name' => $last_name,
-			'contact_number' => $contact_number,
-			'address' => $address,
-			'email_address' => $email_address,
 		);
 
 		$this->db->insert('contacts', $new_contact_data);
